@@ -3,10 +3,12 @@ Sandbox to design the holder for the realsense on the iCub robot
 
 ## 🚶🏻‍♂️ Walkthrough
 
-RealSense cameras have been recently proved to be a valid technology for 3D perception. Therefore, it would be beneficial to plug it onto the iCub robot, in order to facilitate perception, grasping while allowing a comparison with the current cameras mounted on the robot. A possible solution is to design a holder for the camera to be placed on the robot's head:
+RealSense cameras have been recently proved to be a valid technology for 3D perception. Therefore, it would be beneficial to plug it onto the iCub robot, in order to facilitate perception and grasping, while allowing a comparison with the current cameras mounted on the robot.
+
+A possible solution is to design a holder for the camera to be placed on the robot's head:
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/9716288/99793614-37844180-2b29-11eb-9a0e-9b802702c193.png" width="400">
+<img src="https://user-images.githubusercontent.com/9716288/99807903-6c4fc300-2b40-11eb-9856-4725f4e541b7.png" width="400">
 </p>
 
 This sandbox contains the software to run the experiments needed to identify a set of suitable camera poses.
