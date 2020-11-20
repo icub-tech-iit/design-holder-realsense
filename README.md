@@ -1,16 +1,16 @@
 Sandbox to design the holder for the realsense on the iCub robot
 ====================================================
 
-## [🚶🏻‍♂️ Walkthrough][1]
+## [🚶🏻‍♂️ Walkthrough]
 
 ## ☁ Instructions to run the sandbox on the web
 We make use of the [Gitpod Cloud IDE](https://gitpod.io) as infrastructure. Find out more on [YARP-enabled Gitpod workspaces][2].
 
-Here's below a quick how-to guide; please, refer to the section [🚶🏻‍♂️ Walkthrough][1] for an extensive video tutorial 🎥
+Here's below a quick how-to guide; please, refer to the section [🚶🏻‍♂️ Walkthrough] for an extensive video tutorial 🎥
 
 1. To get started with the sandbox, click on the following badge:
 
-    [![Gitpod](https://gitpod.io/button/open-in-gitpod.svg)][3]
+    [![Gitpod](https://gitpod.io/button/open-in-gitpod.svg)]
     
 tbc
 
