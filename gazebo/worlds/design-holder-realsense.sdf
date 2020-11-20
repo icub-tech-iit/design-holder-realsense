@@ -1,0 +1,102 @@
+<?xml version="1.0" ?>
+<sdf version="1.7">
+  <world name="default">
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    
+    <!-- to increase camera FPS
+         see: https://github.com/PX4/PX4-SITL_gazebo/issues/266 -->
+    <scene>
+      <shadows>false</shadows>
+    </scene>
+
+    <light name='user_point_light_0' type='point'>
+        <pose frame=''>0.197302 -0.215077 1 0 -0 0</pose>
+        <diffuse>0.5 0.5 0.5 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <attenuation>
+          <range>20</range>
+          <constant>0.5</constant>
+          <linear>0.01</linear>
+          <quadratic>0.001</quadratic>
+        </attenuation>
+        <cast_shadows>0</cast_shadows>
+        <direction>0 0 -1</direction>
+    </light>
+
+    <state world_name='default'>
+
+      <light name='sun'>
+        <pose frame=''>0 0 10 0 -0 3.14</pose>
+      </light>
+
+      <light name='user_point_light_0'>
+        <pose frame=''>0.197302 -0.215077 1 0 -0 0</pose>
+      </light>
+    </state>
+
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <model name="iCub">
+      <plugin name='configuration_override' filename='libgazebo_yarp_configurationoverride.so'>
+        <yarpPluginConfigurationOverride plugin_name='controlboard_head'> </yarpPluginConfigurationOverride>
+        <initialConfiguration>-0.52 0.0 0.0 -0.35 0 0 0.0</initialConfiguration>
+      </plugin>
+      <plugin name='configuration_override' filename='libgazebo_yarp_configurationoverride.so'>
+        <yarpPluginConfigurationOverride plugin_name='controlboard_right_arm_no_hand'> </yarpPluginConfigurationOverride>
+        <initialConfiguration>-0.52 1.25 0 0.785 0 0 0.0</initialConfiguration>
+      </plugin>
+      <plugin name='configuration_override' filename='libgazebo_yarp_configurationoverride.so'>
+        <yarpPluginConfigurationOverride plugin_name='controlboard_left_arm_no_hand'> </yarpPluginConfigurationOverride>
+        <initialConfiguration>-0.52 1.25 0 0.785 0 0 0.0</initialConfiguration>
+      </plugin>
+      <include>
+        <uri>model://icub_head_realsense_holder</uri>
+        <!--<uri>model://iCubGazeboV2_5_visuomanip</uri>-->
+        <pose>0.0 0.0 0.63 0.0 0.0 0.0</pose>
+      </include>
+    </model>
+
+    <include>
+      <uri>model://table_higher</uri>
+      <pose>-0.466250 0 0 0 0 -1.57</pose>
+    </include>
+
+    <include>
+      <uri>model://mustard_bottle</uri>
+      <pose>-0.25 0.0 0.51 0 0 -1.32</pose>
+      <static>true</static>
+    </include>
+
+    <!--left eye pose wrt root: -0.057382 -0.033422 0.346624-->
+    <!--realsense pose wrt root: 
+        x = -0.057382 - 0.02673
+        y = 0.0 
+        z = 0.346624 + 0.11584 + 0.63-->
+    <model name="realsense">
+    <include>
+      <uri>model://realsense_camera_D415</uri>
+      <plugin name="pose_mover" filename='libdesign-holder-realsense-world.so'/>
+    </include>
+     <pose>-0.084112 0.0 1.092464 2.09492 0 -1.57</pose>
+     <!--<pose>-0.0949953 0.000106986 1.07224 2.09492 -0.00027904 -1.56999</pose>-->
+     <joint name="realsense_joint" type="fixed">
+        <child>icub_head_realsense_holder::head</child>
+        <parent>realsense_camera_D415::link</parent>
+      </joint>
+    </model>
+
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose frame=''>-2.176437 2.460157 2.053792 0 0.463643 -1.0638</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+
+  </world>
+</sdf>

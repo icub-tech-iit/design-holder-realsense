@@ -1,0 +1,118 @@
+<application>
+
+  <name>Design Holder Realsense App</name>
+
+  <module>
+      <name>gzserver</name>
+      <parameters>design-holder-realsense.sdf</parameters>
+      <node>localhost</node>
+  </module>
+
+  <module>
+      <name>gzclient</name>
+      <node>localhost</node>
+  </module>
+
+  <!--<module>
+        <name>yarprobotinterface</name>
+        <parameters>--context gazeboCartesianControl --config no_legs.xml</parameters>
+        <dependencies>
+            <port timeout="20">/icubSim/torso/state:o</port>
+            <port timeout="20">/icubSim/left_arm/state:o</port>
+            <port timeout="20">/icubSim/right_arm/state:o</port>
+        </dependencies>
+        <ensure>
+            <wait when="stop">5</wait>
+        </ensure>
+        <node>localhost</node>
+    </module>
+
+    <module>
+        <name>iKinCartesianSolver</name>
+        <parameters>--context gazeboCartesianControl --part right_arm</parameters>
+        <dependencies>
+            <port timeout="20">/icubSim/torso/state:o</port>
+            <port timeout="20">/icubSim/right_arm/state:o</port>
+        </dependencies>
+        <node>localhost</node>
+    </module>
+
+    <module>
+        <name>iKinCartesianSolver</name>
+        <parameters>--context gazeboCartesianControl --part left_arm</parameters>
+        <dependencies>
+            <port timeout="20">/icubSim/torso/state:o</port>
+            <port timeout="20">/icubSim/left_arm/state:o</port>
+        </dependencies>
+        <node>localhost</node>
+    </module>-->
+
+    <module>
+        <name>iKinGazeCtrl</name>
+        <parameters>--context gazeboCartesianControl --from iKinGazeCtrl.ini --torso off</parameters>
+        <dependencies>
+            <port timeout="20">/icubSim/head/state:o</port>
+        </dependencies>
+        <ensure>
+            <wait when="stop">5</wait>
+        </ensure>
+        <node>localhost</node>
+    </module>
+
+  <module>
+      <name>design-holder-realsense</name>
+        <dependencies>
+            <port timeout="20">/iKinGazeCtrl/rpc</port>
+        </dependencies>
+      <node>localhost</node>
+  </module>
+
+  <module>
+      <name>yarpview</name>
+      <parameters>--name /view_left --p 10 --x 20 --y 20 --compact</parameters>
+      <node>localhost</node>
+  </module>
+
+  <module>
+      <name>yarpview</name>
+      <parameters>--name /view_realsense --p 10 --x 380 --y 20 --compact</parameters>
+      <node>localhost</node>
+  </module>
+
+  <module>
+      <name>yarpview</name>
+      <parameters>--name /view_depth --p 10 --x 720 --y 20 --compact</parameters>
+      <node>localhost</node>
+  </module>
+
+  <connection>
+      <from>/icubSim/cam/left/rgbImage:o</from>
+      <to>/view_left</to>
+      <protocol>fast_tcp</protocol>
+  </connection>
+
+  <connection>
+      <from>/realsense_camera_D415/rgbImage:o</from>
+      <to>/view_realsense</to>
+      <protocol>fast_tcp</protocol>
+  </connection>
+
+  <connection>
+      <from>/realsense_camera_D415/depthImage:o</from>
+      <to>/view_depth</to>
+      <protocol>fast_tcp+recv.portmonitor+type.dll+file.depthimage</protocol>
+  </connection>
+
+    <connection>
+        <from>/realsense_camera_D415/rgbImage:o</from>
+        <to>/evaluate-superquadric/rgb:i</to>
+        <protocol>fast_tcp</protocol>
+    </connection>
+
+    <connection>
+        <from>/realsense_camera_D415/depthImage:o</from>
+        <to>/evaluate-superquadric/depth:i</to>
+        <protocol>fast_tcp</protocol>
+    </connection>
+
+</application>
