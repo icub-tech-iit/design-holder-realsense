@@ -12,9 +12,9 @@ find_package(YARP REQUIRED COMPONENTS os sig dev math eigen)
 find_package(GAZEBO REQUIRED)
 find_package(SuperquadricLib REQUIRED)
 
-set(PCL_MODULE_PATH "$ENV{ROBOT_CODE}/pcl/cmake/Modules")
-list(APPEND CMAKE_MODULE_PATH ${PCL_MODULE_PATH})
-find_package(PCL REQUIRED)
+#set(PCL_MODULE_PATH "$ENV{ROBOT_CODE}/pcl/cmake/Modules")
+#list(APPEND CMAKE_MODULE_PATH ${PCL_MODULE_PATH})
+#find_package(PCL REQUIRED)
 
 list(APPEND CMAKE_MODULE_PATH ${ICUBCONTRIB_MODULE_PATH})
 find_package(IPOPT REQUIRED)
