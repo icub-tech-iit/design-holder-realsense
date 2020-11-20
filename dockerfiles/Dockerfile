@@ -54,13 +54,12 @@ ARG BRANCH=devel
 ARG BUILD_TYPE=Release
 
 # Install VTK
-RUN git clone https://github.com/Kitware/VTK.git --depth 1 --branch v9.0.1 && \
+RUN git clone https://github.com/Kitware/VTK.git --depth 1 --branch v8.2.0 && \
     cd VTK && mkdir build && cd build && \
     cmake .. \
     -DCMAKE_BUILD_TYPE=$BUILD_TYPE \
     -DBUILD_TESTING=OFF && \
-    make install && \
-    cd ../.. && rm -Rf VTK
+    make install 
 
 # Build ycm
 RUN git clone https://github.com/robotology/ycm.git --depth 1 && \
@@ -93,24 +92,21 @@ RUN git clone https://github.com/robotology/gazebo-yarp-plugins.git --depth 1 --
     cd gazebo-yarp-plugins && mkdir build && cd build && \
     cmake .. \
     -DCMAKE_BUILD_TYPE=$BUILD_TYPE && \
-    make install && \
-    cd ../.. && rm -Rf gazebo-yarp-plugins
+    make install 
 
 # Clone icub-models
 RUN git clone https://github.com/robotology/icub-models.git --depth 1 --branch $BRANCH && \
     cd icub-models && mkdir build && cd build && \
     cmake .. \
     -DCMAKE_BUILD_TYPE=$BUILD_TYPE && \
-    make install && \
-    cd ../.. && rm -Rf icub-models
+    make install 
 
 # Build find-superquadric
 RUN git clone https://github.com/robotology/superquadric-lib.git --depth 1 && \
     cd superquadric-lib && mkdir build && cd build && \
     cmake .. \
     -DCMAKE_BUILD_TYPE=$BUILD_TYPE && \
-    make install && \
-    cd ../.. && rm -Rf superquadric-lib
+    make install 
 
 # Set environmental variables
 ENV DISPLAY=:1
@@ -134,8 +130,9 @@ WORKDIR /home/gitpod
 RUN echo "GIT_PROMPT_ONLY_IN_REPO=1" >> ~/.bashrc && \
     echo "source \${HOME}/.bash-git-prompt/gitprompt.sh" >> ~/.bashrc && \
     echo "source /usr/share/gazebo/setup.sh" >> ~/.bashrc && \
-    echo "export GAZEBO_RESOURCE_PATH=\${GAZEBO_RESOURCE_PATH}:\${ICUBcontrib_DIR}/share/gazebo/worlds" >> ~/.bashrc && \
-    echo "export GAZEBO_MODEL_PATH=\${GAZEBO_MODEL_PATH}:/usr/local/share:/usr/local/share/iCub/robots:\${ICUBcontrib_DIR}/share/gazebo/models" >> ~/.bashrc && \
+    echo "export GAZEBO_RESOURCE_PATH=\${GAZEBO_RESOURCE_PATH}:/usr/local/share/gazebo/worlds:\${ICUBcontrib_DIR}/share/gazebo/worlds" >> ~/.bashrc && \
+    echo "export GAZEBO_MODEL_PATH=\${GAZEBO_MODEL_PATH}:/usr/local/share:/usr/local/share/iCub/robots:/usr/local/share/gazebo/models:\${ICUBcontrib_DIR}/share/gazebo/models" >> ~/.bashrc && \
+    echo "export GAZEBO_PLUGIN_PATH=\${GAZEBO_PLUGIN_PATH}:/usr/local/lib" >> ~/.bashrc && \
     echo "export PATH=\${PATH}:\${ICUBcontrib_DIR}/bin" >> ~/.bashrc
 
 # Create the Desktop dir

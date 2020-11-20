@@ -2,17 +2,6 @@
 
   <name>Design Holder Realsense App</name>
 
-  <module>
-      <name>gzserver</name>
-      <parameters>design-holder-realsense.sdf</parameters>
-      <node>localhost</node>
-  </module>
-
-  <module>
-      <name>gzclient</name>
-      <node>localhost</node>
-  </module>
-
   <!--<module>
         <name>yarprobotinterface</name>
         <parameters>--context gazeboCartesianControl --config no_legs.xml</parameters>

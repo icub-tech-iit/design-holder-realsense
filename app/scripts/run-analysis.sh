@@ -25,6 +25,10 @@ STEPTHETA=5.0
 run() {
     yarpserver --write --silent &
 
+    gazebo design-holder-realsense.sdf &
+
+    yarp wait /realsense/mover:i
+
     yarpmanager-console --application ${ICUBcontrib_DIR}/share/ICUBcontrib/applications/design-holder-realsense/design-holder-realsense-app.xml --run --connect --exit --silent
          
     update_pose 
