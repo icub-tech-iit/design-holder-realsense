@@ -26,7 +26,7 @@ To run the sandbox locally using [Docker](https://www.docker.com), go through th
 1. Open up the browser and connect to **`localhost:6080`** to get to the workspace desktop GUI.
 1. In the desktop GUI, open a terminal and run the grasping experiment:
    ```sh
-   $ icub-grasp.sh
+   $ run-analysis.sh
    ```
 1. Once done, from the container shell press **CTRL+D**.
 
