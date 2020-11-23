@@ -31,7 +31,11 @@ The analysis carried out relies on the following steps:
 - the optimal superquadric is retrieved beforehand considering a reasonable view of the object, fully inside the field of view;
 - for each pose the superquadric is extracted and compared to the optimal.
 
-The camera pose is finally retrieved in order to minimize the difference between the dimensions of the optimal and the computed superquadric. A full report describing the performed analysis can be found [here](report.md).
+The camera pose is finally retrieved in order to minimize the difference between the dimensions of the optimal and the computed superquadric. 
+
+
+## 📢📈📊📉🎯 Report on Outcome and Results
+A full report describing the performed analysis can be found [here](report.md).
 
 <!---
 ## ☁ Instructions to run the sandbox on the web
