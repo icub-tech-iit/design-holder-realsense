@@ -15,7 +15,8 @@ To run the sandbox locally using [Docker](https://www.docker.com), go through th
     ```sh
     $ init-icubcontrib-local.sh
     $ start-vnc-session-local.sh
-    ```
+    ``
+--->
 1. Clone and install the project:
     ```sh
     $ git clone https://github.com/icub-tech-iit/design-holder-realsense.git /workspace/design-holder-realsense
@@ -24,7 +25,7 @@ To run the sandbox locally using [Docker](https://www.docker.com), go through th
     $ cmake ../
     $ make install
     ```
---->
+
 3. Open up the browser and connect to **`localhost:6080`** to get to the workspace desktop GUI.
 3. In the desktop GUI, open a terminal and run the analysis:
    ```sh
