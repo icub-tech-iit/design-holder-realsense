@@ -73,7 +73,11 @@ RUN git clone https://github.com/robotology/ycm.git --depth 1 && \
 RUN git clone https://github.com/robotology/yarp.git --depth 1 && \
     cp ./yarp/data/bash-completion/yarp /etc/bash_completion.d && \
     cd yarp && mkdir build && cd build && \
-    cmake .. && make install && \
+    cmake .. \
+    -DENABLE_yarpcar_depthimage=ON \
+    -DENABLE_yarpmod_depthCamera=ON \
+    -DENABLE_yarpcar_portmonitor=ON && \ 
+    make install && \
     cd ../.. && rm -Rf yarp
 
 # Build icub-main
@@ -107,6 +111,9 @@ RUN git clone https://github.com/robotology/superquadric-lib.git --depth 1 && \
     cmake .. \
     -DCMAKE_BUILD_TYPE=$BUILD_TYPE && \
     make install 
+
+# Create the Desktop dir
+RUN mkdir -p /workspace
 
 # Set environmental variables
 ENV DISPLAY=:1
@@ -152,6 +159,11 @@ COPY start-vnc-session.sh /usr/bin/start-vnc-session.sh
 COPY start-vnc-session-local.sh /usr/bin/start-vnc-session-local.sh
 RUN chmod +x /usr/bin/start-vnc-session.sh /usr/bin/start-vnc-session-local.sh && \
     dos2unix /usr/bin/start-vnc-session.sh /usr/bin/start-vnc-session-local.sh
+
+#COPY entrypoint.sh /usr/bin/entrypoint.sh
+#RUN chmod +x /usr/bin/entrypoint.sh
+# Copy the superbuild binary & entrypoint script from previous stage
+#ENTRYPOINT [ "/usr/bin/entrypoint.sh" ]
 
 # Manage x11vnc port
 EXPOSE 5901
