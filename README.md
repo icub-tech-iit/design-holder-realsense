@@ -34,7 +34,7 @@ The analysis carried out relies on the following steps:
 The camera pose is finally retrieved in order to minimize the difference between the dimensions of the optimal and the computed superquadric. 
 
 
-## 📢📈📊📉🎯 Report on Outcome and Results
+## 📊📉🎯 Report on Outcome and Results
 A full report describing the performed analysis can be found [here](report.md).
 
 <!---
