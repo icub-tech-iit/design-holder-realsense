@@ -33,6 +33,7 @@ The analysis carried out relies on the following steps:
 
 The camera pose is finally retrieved in order to minimize the difference between the dimensions of the optimal and the computed superquadric. A full report describing the performed analysis can be found [here](report.md).
 
+<!---
 ## ☁ Instructions to run the sandbox on the web
 We make use of the [Gitpod Cloud IDE](https://gitpod.io) as infrastructure. Find out more on [YARP-enabled Gitpod workspaces][1].
 
@@ -44,12 +45,14 @@ Here's below a quick how-to guide; please, refer to the section🚶🏻‍♂️
 
 tbc
 
+--->
+
 ## [🔽 Instructions to run the sandbox locally](./dockerfiles/README.md)
 
-
+<!---
 ## ℹ Manual installation
 If you want to install the sandbox manually to perform specific customization (e.g. enable GPU), please refer to the recipe contained in the [**`Dockerfile`**](./dockerfiles/Dockerfile).
-
+--->
 
 ### 👨🏻‍💻 Maintainers
 This repository is maintained by:
