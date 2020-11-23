@@ -25,10 +25,10 @@ To run the sandbox locally using [Docker](https://www.docker.com), go through th
     $ make install
     ```
 --->
-1. Open up the browser and connect to **`localhost:6080`** to get to the workspace desktop GUI.
-1. In the desktop GUI, open a terminal and run the analysis:
+3. Open up the browser and connect to **`localhost:6080`** to get to the workspace desktop GUI.
+3. In the desktop GUI, open a terminal and run the analysis:
    ```sh
    $ run-analysis.sh
    ```
-1. Once done, from the container shell press **CTRL+D**.
+3. Once done, from the container shell press **CTRL+D**.
 
