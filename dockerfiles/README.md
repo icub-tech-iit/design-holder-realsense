@@ -4,12 +4,13 @@
 To run the sandbox locally using [Docker](https://www.docker.com), go through the following steps:
 1. Pull the docker image:
     ```sh
-    $ docker pull tbc
+    $ docker pull icubteamcode/design-holder:latest
     ```
 1. Launch the container:
     ```sh
-    $ docker run -it --rm -p 6080:6080 --user gitpod tbc
+    $ docker run -it --rm -p 6080:6080 --user gitpod icubteamcode/design-holder:latest
     ```
+<!---
 1. From within the container shell, launch the following scripts:
     ```sh
     $ init-icubcontrib-local.sh
@@ -23,8 +24,9 @@ To run the sandbox locally using [Docker](https://www.docker.com), go through th
     $ cmake ../
     $ make install
     ```
+--->
 1. Open up the browser and connect to **`localhost:6080`** to get to the workspace desktop GUI.
-1. In the desktop GUI, open a terminal and run the grasping experiment:
+1. In the desktop GUI, open a terminal and run the analysis:
    ```sh
    $ run-analysis.sh
    ```
