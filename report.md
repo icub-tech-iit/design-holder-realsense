@@ -132,7 +132,7 @@ By merging the results obtained for different object's positions, the range of s
 
 The following shows for each of the suitable poses, the extracted superquadric when the object is far, close and in the middle position.
 
-| Best pose  | Far | Close | Middle |
+| Suitable poses  | Far | Close | Middle |
 | ------------- | ------------- | ------------- | ------------- |
 | `-4.08411 1 -3.5375 -30.0746` | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100000110-6d435780-2dc1-11eb-91d9-8d550df7106a.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100001252-25253480-2dc3-11eb-9fd2-eef51e5fd34f.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100002148-741f9980-2dc4-11eb-84f7-e5c729cb73aa.png width="200"> </p> |
 | `-2.08411 0 -9.5375 -30.0746` | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100000160-7b917380-2dc1-11eb-81b1-da774ac91553.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100001261-28b8bb80-2dc3-11eb-832d-ab80d6f3a285.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100002159-771a8a00-2dc4-11eb-95b8-544742545bfc.png width="200"> </p> |
