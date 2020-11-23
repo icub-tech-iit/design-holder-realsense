@@ -35,7 +35,7 @@ The camera pose is finally retrieved in order to minimize the difference between
 
 
 ## 📊📉🎯 Report on Outcome and Results
-A full report describing the performed analysis can be found [here](report.md).
+A full report describing the performed analysis can be found in the following [report](report.md).
 
 <!---
 ## ☁ Instructions to run the sandbox on the web
