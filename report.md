@@ -127,12 +127,26 @@ The best pose identified is at `(-6 -11.4112 36.25) cm` and `-5.07455 degrees`. 
 
 ### 4. Choosing the final pose
 
-By merging the results obtained for different object's positions, the range of suitable poses for which the computed score is below `0.005` is the following:
+By merging the results obtained for different object's positions, the range of suitable poses for which the computed score is below `0.002` is the following:
 
 <p align="center">  
-<img src=https://user-images.githubusercontent.com/9716288/99997510-8f3adb00-2dbd-11eb-8b31-fd94caa62657.jpg width="350">
+<img src=https://user-images.githubusercontent.com/9716288/100095486-d7f4a180-2e5a-11eb-8059-2ba8b4e56b6e.jpg width="350">
+
+Since the central poses of the camera provide a reasonable score while keeping the object in the center of the field of view when the head is centered, we further reduced the range of optimal poses, by additionally removing the one in the middle of the eyes as it covers the eyes:
+
+<p align="center">  
+<img src=https://user-images.githubusercontent.com/9716288/100095496-da56fb80-2e5a-11eb-9f09-1550f794e8e8.jpg width="350">
 </p>
 
+The final set of pose is reported in the following table, showing the extracted superquadric when the object is far, close and in the middle position.
+
+| Suitable poses  | Far | Close | Middle |
+| ------------- | ------------- | ------------- | ------------- |
+| `(-9.4112 0 40.2464)cm` <br> `-25 deg` | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100098399-471fc500-2e5e-11eb-9ab2-9dcd8ecf874f.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100098015-b21ccc00-2e5d-11eb-8f71-58e58d8adb85.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100098015-b21ccc00-2e5d-11eb-8f71-58e58d8adb85.png width="200"> </p> |
+| `(-7.4112 0 40.2464)cm` <br> `-30 deg` | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100097639-18edb580-2e5d-11eb-8a2e-5e6b4ef42674.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100098401-47b85b80-2e5e-11eb-867c-3b8e77c636cd.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100098089-d082c780-2e5d-11eb-95fa-d69529efad9b.png width="200"> </p> |
+
+
+<!--
 The following shows for each of the suitable poses, the extracted superquadric when the object is far, close and in the middle position.
 
 | Suitable poses  | Far | Close | Middle |
@@ -144,3 +158,4 @@ The following shows for each of the suitable poses, the extracted superquadric w
 | `(-8.4112 2 40.25)cm` <br> `-25 deg` | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100000269-a4b20400-2dc1-11eb-8030-f68b6f51bc44.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100001283-3110f680-2dc3-11eb-95b6-4101c8465a9b.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100002178-7da90180-2dc4-11eb-9e99-43c0547b548b.png width="200"> </p> |
 | `(-7.4112 2 42.25)cm` <br> `-30 deg` | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100000318-b8f60100-2dc1-11eb-902a-fdbf0ae76855.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100001286-33735080-2dc3-11eb-837a-bf22d189f369.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100002181-7e419800-2dc4-11eb-8bf0-8f6aa4b8f50a.png width="200"> </p> |
 | `(-7.4112 4 36.25)cm` <br> `-30 deg` | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100000352-c612f000-2dc1-11eb-8b89-06434e850a6a.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100001292-353d1400-2dc3-11eb-8700-60e74f3dc1c5.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100002185-7e419800-2dc4-11eb-94e5-4edc1f111d81.png width="200"> </p> |
+-->
