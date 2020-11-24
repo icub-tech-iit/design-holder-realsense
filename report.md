@@ -26,11 +26,14 @@ In order to identify a _nominal pose_, we started from the one conceived for the
 However, while the object is visible at high distances from the robot (~ `34 cm`), at lower distances (~ `22 cm`) the object does not fall into the field of view.
 Therefore we decided to modify the orientation of the camera by tilting it of additional `30 degrees` and qualitatively evaluated it:
 
-Finally the nominal pose identified is `(-0.084112 0.0 1.092464 2.09492 0 -1.57)`.
+Finally the nominal position identified is `(-8.4112 0.0 46.2464) cm` with a rotation of `30 degrees` around the optical axis.
+
+#### ⚠ **Important note**
+The pose is identified with respect to the robot root, with `X` pointing backward, `Y` pointing right and `Z` pointing upwards.
 
 ### 2. Defining a search space
 
-Given the nominal pose we chose `(-0.084112 0.0 1.092464 2.09492 0 -1.57)`, we perturbed its position and orientation around the optical axis within the following ranges:
+Given the nominal position we chose as `(-8.4112 0.0 46.2464) cm` and a rotation of `30 degrees`, we perturbed its position and orientation around the optical axis within the following ranges:
 
 - x direction: `[-3 1] cm`;
 - y direction: `[-6 6] cm`;
@@ -99,7 +102,7 @@ The result we have when the object is as close as possible to the robot is shown
 | <p align="center"> <img src=https://user-images.githubusercontent.com/9716288/99963129-9a781180-2d91-11eb-941a-788104f85f26.jpg width="350"> </p> |   <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/99963135-9d730200-2d91-11eb-90e4-64413b1ed7a1.jpg width="350"> </p> |
 
 The nominal pose defined [here](#1-identifying-the-nominal-pose) is shown in red.
-The best pose identified is at `-6.0841    1.0000   -9.5375   -5.0746`. However, there is a _range_ of suitable poses, shown on the right, for which the computed score was below `0.005`.
+The best pose identified is at `(-6 -7.4112 36.25) cm` and  `-5.07455 degrees`. However, there is a _range_ of suitable poses, shown on the right, for which the computed score was below `0.005`.
 
 #### 3.2 Object far
 
@@ -109,7 +112,7 @@ The result we have when the object is far from the robot is shown in the followi
 | ------------- | ------------- |
 |<p align="center"> <img src=https://user-images.githubusercontent.com/9716288/99963251-c7c4bf80-2d91-11eb-8ece-8cf4e2c9562f.jpg width="350"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/99966394-8387ee00-2d96-11eb-8e81-4a0e563a0b51.jpg width="350"> </p> |
 
-The best pose identified is at `-2.0841    1.0000   -9.5375  -25.0746`. However, there is a _range_ of suitable poses, shown on the right, for which the computed score was below `0.005`.
+The best pose identified is at `(-2 -7.4112 36.25) cm` and `-25.0746 degrees`. However, there is a _range_ of suitable poses, shown on the right, for which the computed score was below `0.005`.
 
 #### 3.3 Object in the middle
 
@@ -120,7 +123,7 @@ The result we have when the object is placed in the middle between `25 cm` and `
 |<p align="center"> <img src=https://user-images.githubusercontent.com/9716288/99996141-a11b7e80-2dbb-11eb-8376-6d82b9edbcd5.jpg width="350"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/99996412-fb1c4400-2dbb-11eb-85b6-06a706d65cee.jpg width="350"> </p> |
 
 
-The best pose identified is at `-6.08411 -3 -9.5375 -5.07455`. However, there is a _range_ of suitable poses, shown on the right, for which the computed score was below `0.005`.
+The best pose identified is at `(-6 -11.4112 36.25) cm` and `-5.07455 degrees`. However, there is a _range_ of suitable poses, shown on the right, for which the computed score was below `0.005`.
 
 ### 4. Choosing the final pose
 
@@ -134,10 +137,10 @@ The following shows for each of the suitable poses, the extracted superquadric w
 
 | Suitable poses  | Far | Close | Middle |
 | ------------- | ------------- | ------------- | ------------- |
-| `-4.08411 1 -3.5375 -30.0746` | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100000110-6d435780-2dc1-11eb-91d9-8d550df7106a.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100001252-25253480-2dc3-11eb-9fd2-eef51e5fd34f.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100002148-741f9980-2dc4-11eb-84f7-e5c729cb73aa.png width="200"> </p> |
-| `-2.08411 0 -9.5375 -30.0746` | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100000160-7b917380-2dc1-11eb-81b1-da774ac91553.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100001261-28b8bb80-2dc3-11eb-832d-ab80d6f3a285.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100002159-771a8a00-2dc4-11eb-95b8-544742545bfc.png width="200"> </p> |
-| `-2.08411 1 -3.5375 -30.0746` | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100000191-877d3580-2dc1-11eb-814e-c7c9de3c92ab.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100001269-2b1b1580-2dc3-11eb-9017-e3d9b2a1e2bb.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100002165-797ce400-2dc4-11eb-8b5b-ca9a38cc7444.png width="200"> </p> |
-| `1.91589 -2 -9.5375 -25.0746` | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100000223-9663e800-2dc1-11eb-830c-099aad5a5f53.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100001281-2f473300-2dc3-11eb-98c8-6ec7f409a16e.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100002174-7d106b00-2dc4-11eb-96f6-4ea8af204f89.png width="200"> </p> |
-| `1.91589 0 -5.5375 -25.0746 ` | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100000269-a4b20400-2dc1-11eb-8030-f68b6f51bc44.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100001283-3110f680-2dc3-11eb-95b6-4101c8465a9b.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100002178-7da90180-2dc4-11eb-9e99-43c0547b548b.png width="200"> </p> |
-| `1.91589 1 -3.5375 -30.0746` | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100000318-b8f60100-2dc1-11eb-902a-fdbf0ae76855.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100001286-33735080-2dc3-11eb-837a-bf22d189f369.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100002181-7e419800-2dc4-11eb-8bf0-8f6aa4b8f50a.png width="200"> </p> |
-| `3.91589 1 -9.5375 -30.0746` | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100000352-c612f000-2dc1-11eb-8b89-06434e850a6a.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100001292-353d1400-2dc3-11eb-8700-60e74f3dc1c5.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100002185-7e419800-2dc4-11eb-94e5-4edc1f111d81.png width="200"> </p> |
+| `(-4 -7.4112 42.25)cm` <br> `-30 deg` | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100000110-6d435780-2dc1-11eb-91d9-8d550df7106a.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100001252-25253480-2dc3-11eb-9fd2-eef51e5fd34f.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100002148-741f9980-2dc4-11eb-84f7-e5c729cb73aa.png width="200"> </p> |
+| `(-2 -8.4112 36.25)cm` <br> `-30 deg` | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100000160-7b917380-2dc1-11eb-81b1-da774ac91553.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100001261-28b8bb80-2dc3-11eb-832d-ab80d6f3a285.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100002159-771a8a00-2dc4-11eb-95b8-544742545bfc.png width="200"> </p> |
+| `(-2 -7.4112 42.25)cm` <br> `-30 deg` | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100000191-877d3580-2dc1-11eb-814e-c7c9de3c92ab.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100001269-2b1b1580-2dc3-11eb-9017-e3d9b2a1e2bb.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100002165-797ce400-2dc4-11eb-8b5b-ca9a38cc7444.png width="200"> </p> |
+| `(2 -10.4112 36.25)cm` <br> `-25 deg` | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100000223-9663e800-2dc1-11eb-830c-099aad5a5f53.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100001281-2f473300-2dc3-11eb-98c8-6ec7f409a16e.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100002174-7d106b00-2dc4-11eb-96f6-4ea8af204f89.png width="200"> </p> |
+| `(2 -8.4112 40.25)cm` <br> `-25 deg` | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100000269-a4b20400-2dc1-11eb-8030-f68b6f51bc44.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100001283-3110f680-2dc3-11eb-95b6-4101c8465a9b.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100002178-7da90180-2dc4-11eb-9e99-43c0547b548b.png width="200"> </p> |
+| `(2 -7.4112 42.25)cm` <br> `-30 deg` | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100000318-b8f60100-2dc1-11eb-902a-fdbf0ae76855.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100001286-33735080-2dc3-11eb-837a-bf22d189f369.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100002181-7e419800-2dc4-11eb-8bf0-8f6aa4b8f50a.png width="200"> </p> |
+| `(4 -7.4112 36.25)cm` <br> `-30 deg` | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100000352-c612f000-2dc1-11eb-8b89-06434e850a6a.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100001292-353d1400-2dc3-11eb-8700-60e74f3dc1c5.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100002185-7e419800-2dc4-11eb-94e5-4edc1f111d81.png width="200"> </p> |
