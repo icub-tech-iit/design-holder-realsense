@@ -99,10 +99,10 @@ The result we have when the object is as close as possible to the robot is shown
 
 | Best pose  | Set of suitable poses |
 | ------------- | ------------- |
-| <p align="center"> <img src=https://user-images.githubusercontent.com/9716288/99963129-9a781180-2d91-11eb-941a-788104f85f26.jpg width="350"> </p> |   <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/99963135-9d730200-2d91-11eb-90e4-64413b1ed7a1.jpg width="350"> </p> |
+| <p align="center"> <img src=https://user-images.githubusercontent.com/9716288/100202351-7c312380-2f01-11eb-9b6c-3971fcf03348.jpg width="350"> </p> |   <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100202360-7e937d80-2f01-11eb-9e57-9203716539e5.jpg width="350"> </p> |
 
 The nominal pose defined [here](#1-identifying-the-nominal-pose) is shown in red.
-The best pose identified is at `(-6 -7.4112 36.25) cm` and  `-5.07455 degrees`. However, there is a _range_ of suitable poses, shown on the right, for which the computed score was below `0.005`.
+The best pose identified is at `(-7.4112 -6 36.25) cm` and  `-5.07455 degrees`. However, there is a _range_ of suitable poses, shown on the right, for which the computed score was below `0.005`.
 
 #### 3.2 Object far
 
@@ -110,9 +110,9 @@ The result we have when the object is far from the robot is shown in the followi
 
 | Best pose  | Set of suitable poses |
 | ------------- | ------------- |
-|<p align="center"> <img src=https://user-images.githubusercontent.com/9716288/99963251-c7c4bf80-2d91-11eb-8ece-8cf4e2c9562f.jpg width="350"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/99966394-8387ee00-2d96-11eb-8e81-4a0e563a0b51.jpg width="350"> </p> |
+|<p align="center"> <img src=https://user-images.githubusercontent.com/9716288/100202378-86532200-2f01-11eb-8d3b-91d29592bddf.jpg width="350"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100202380-86ebb880-2f01-11eb-81a3-31e03143a2fd.jpg width="350"> </p> |
 
-The best pose identified is at `(-2 -7.4112 36.25) cm` and `-25.0746 degrees`. However, there is a _range_ of suitable poses, shown on the right, for which the computed score was below `0.005`.
+The best pose identified is at `(-7.4112 -2 36.25) cm` and `-25.0746 degrees`. However, there is a _range_ of suitable poses, shown on the right, for which the computed score was below `0.005`.
 
 #### 3.3 Object in the middle
 
@@ -120,10 +120,10 @@ The result we have when the object is placed in the middle between `25 cm` and `
 
 | Best pose  | Set of suitable poses |
 | ------------- | ------------- |
-|<p align="center"> <img src=https://user-images.githubusercontent.com/9716288/99996141-a11b7e80-2dbb-11eb-8376-6d82b9edbcd5.jpg width="350"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/99996412-fb1c4400-2dbb-11eb-85b6-06a706d65cee.jpg width="350"> </p> |
+|<p align="center"> <img src=https://user-images.githubusercontent.com/9716288/100202389-8a7f3f80-2f01-11eb-9653-c33135987536.jpg width="350"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100202390-8a7f3f80-2f01-11eb-9e03-248a0ae9995a.jpg width="350"> </p> |
 
 
-The best pose identified is at `(-6 -11.4112 36.25) cm` and `-5.07455 degrees`. However, there is a _range_ of suitable poses, shown on the right, for which the computed score was below `0.005`.
+The best pose identified is at `(-11.4112 -6 36.25) cm` and `-5.07455 degrees`. However, there is a _range_ of suitable poses, shown on the right, for which the computed score was below `0.005`.
 
 ### 4. Choosing the final pose
 
