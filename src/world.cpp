@@ -11,6 +11,8 @@
 #include <gazebo/physics/Model.hh>
 #include <gazebo/physics/Link.hh>
 #include <gazebo/physics/Joint.hh>
+#include <gazebo/physics/PhysicsEngine.hh>
+#include <gazebo/physics/World.hh>
 #include <gazebo/common/Events.hh>
 #include <ignition/math/Pose3.hh>
 
@@ -25,7 +27,11 @@ namespace gazebo {
 /******************************************************************************/
 class ModelMover : public gazebo::ModelPlugin
 {
+    gazebo::physics::WorldPtr world;
     gazebo::physics::ModelPtr model;
+    gazebo::physics::ModelPtr icub;
+    gazebo::physics::JointPtr fixed_joint;
+    gazebo::physics::LinkPtr child, parent;
     gazebo::event::ConnectionPtr renderer_connection;
     yarp::os::BufferedPort<yarp::os::Bottle> port;
     ignition::math::Pose3d starting_pos;
@@ -45,25 +51,33 @@ class ModelMover : public gazebo::ModelPlugin
                     }
                 }
 
-                ignition::math::Pose3d curr_pos = starting_pos; // model->WorldPose();
+                if (fixed_joint)
+                {
+                    yInfo() << "Detaching joint";
+                    fixed_joint->Detach();
+                }
+
+                ignition::math::Pose3d curr_pos = starting_pos;
                 const auto x = curr_pos.Pos().X() + b->get(0).asDouble();
                 const auto y = curr_pos.Pos().Y() + b->get(1).asDouble();
                 const auto z = curr_pos.Pos().Z() + b->get(2).asDouble();
                 const auto roll = curr_pos.Rot().Roll() + (M_PI/180.0)*b->get(3).asDouble();
-                const auto pitch = curr_pos.Rot().Pitch(); // + (M_PI/180.0)*b->get(4).asDouble();
-                const auto yaw = curr_pos.Rot().Yaw(); // + (M_PI/180.0)*b->get(5).asDouble();
+                const auto pitch = curr_pos.Rot().Pitch();
+                const auto yaw = curr_pos.Rot().Yaw();
                 ignition::math::Pose3d new_pose(x, y, z, roll, pitch, yaw);
                 yInfo() << "New pose:" << x << y << z << roll << pitch << yaw;
                 model->SetWorldPose(new_pose);
 
-                physics::LinkPtr child = model->GetLink("icub_head_realsense_holder::head");
-                physics::LinkPtr parent = model->GetLink("realsense_camera_D415::link");
-                if (child || parent)
+                child = icub->GetLink("icub_head_realsense_holder::head");
+                parent = model->GetLink("realsense_camera_D415::link");
+                if (child && parent)
                 {
-                    if (model->CreateJoint("realsense_joint", "fixed", parent, child))
-                    {
-                        yInfo() << "Added realsense_joint";
-                    }
+                    yInfo() << "Reattaching joint";
+                    fixed_joint->Attach(parent,child);
+                }
+                else
+                {
+                    yError() << "icub_head_realsense_holder::head or realsense_camera_D415::link not found";
                 }
             }
         }
@@ -74,16 +88,33 @@ public:
     void Load(gazebo::physics::ModelPtr model, sdf::ElementPtr)
     {
         this->model = model;
+        this->world = model->GetWorld();
+
+        // this creates the fixed joint, not attached to anything yet
+        this->fixed_joint = world->Physics()->CreateJoint("fixed", model);
+
+        fixed_joint->SetName(model->GetName() + "_fixed_to_icub");
+        fixed_joint->SetModel(model);
+
+        icub = world->ModelByName("iCub");
+        if (!icub)
+        {
+            yError() << "Model for icub not found";
+        }
+        child = icub->GetLink("icub_head_realsense_holder::head");
+        parent = model->GetLink("realsense_camera_D415::link");
+        if (!child)
+        {
+            yError() << "icub_head_realsense_holder::head link not found";
+        }
+        if (!parent)
+        {
+            yError() << "realsense_camera_D415::link not found";
+        }
+        fixed_joint->Load(parent, child, ignition::math::Pose3d());
+        fixed_joint->Attach(parent,child);
+
         starting_pos = this->model->WorldPose();
-//        auto model_sdf = model->GetSDF();
-//        if( model_sdf->HasElement("pose") )
-//        {
-//            starting_pos = model_sdf->Get<ignition::math::Pose3d>("pose");
-//        }
-//        else
-//        {
-//            starting_pos = ignition::math::Pose3d(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-//        }
         port.open("/" + model->GetName() + "/mover:i");
         auto bind = boost::bind(&ModelMover::onWorldFrame, this);
         renderer_connection = gazebo::event::Events::ConnectWorldUpdateBegin(bind);
