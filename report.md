@@ -6,11 +6,14 @@ The procedure consisted of the following steps:
 1. [**Identifying the nominal pose**](#1-identifying-the-nominal-pose)
     - We identified a _nominal pose_ starting from the pose conceived for the first holder prototype.
 2. [**Defining a search space**](#2-defining-a-search-space)
-    - We defined a search space by _perturbing the nominal pose in position and orientation along the optical axis_.
+    - We defined a search space by _perturbing the nominal pose in position and orientation along the y axis_.
 3. [**Identifying the best poses**](#3-identifying-the-best-poses)
     - We identified the best poses with respect to the robot, optimizing for the difference between the optimal and fitted superquadric.
 4. [**Choosing the final pose**](#4-choosing-the-final-pose)
     - We chose the final pose by merging the results of the previous analysis.
+5. [**Designing the holder**](#5-designing-the-holder)
+    - We chose the final pose by merging the results of the previous analysis.
+
 
 #### ⚠ **Important note**
 Currently, [iCubGenova01](https://github.com/robotology/robots-configuration/blob/032c70ab33fff1c9da73bf19c13a11ebe58fea1d/iCubGenova01/hardware/motorControl/icub_head.xml#L54) has the neck pitch minimum value set at `-37 degrees`. However, for other robots (see for example [iCubGenova02](https://github.com/robotology/robots-configuration/blob/4f880ec1a7970626bab41061ff4594b45a08d71a/iCubGenova02/hardware/motorControl/head-eb20-j0_1-mc.xml#L15) and [iCubGenova04](https://github.com/robotology/robots-configuration/blob/4f880ec1a7970626bab41061ff4594b45a08d71a/iCubGenova04/hardware/motorControl/head-eb20-j0_1-mc.xml#L15)) the limit is set at `-30 degrees`, also shared by the iCub models in Gazebo. We thus adopted this value, in order to rely on the official limits while being consistent with different iCubs.
@@ -26,14 +29,14 @@ In order to identify a _nominal pose_, we started from the one conceived for the
 However, while the object is visible at high distances from the robot (~ `34 cm`), at lower distances (~ `22 cm`) the object does not fall into the field of view.
 Therefore we decided to modify the orientation of the camera by tilting it of additional `30 degrees` and qualitatively evaluated it:
 
-Finally the nominal position identified is `(-8.4112 0.0 46.2464) cm` with a rotation of `30 degrees` around the optical axis.
+Finally the nominal position identified is `(-8.4 0.0 46.3) cm` with a rotation of `30 degrees` around the `Y` axis.
 
 #### ⚠ **Important note**
 The pose is identified with respect to the robot root, with `X` pointing backward, `Y` pointing right and `Z` pointing upwards.
 
 ### 2. Defining a search space
 
-Given the nominal position we chose as `(-8.4112 0.0 46.2464) cm` and a rotation of `30 degrees`, we perturbed its position and orientation around the optical axis within the following ranges:
+Given the nominal position we chose as `(-8.4 0.0 46.3) cm` and a rotation of `30 degrees`, we perturbed its position and orientation around the `Y` axis within the following ranges:
 
 - x direction: `[-3 1] cm`;
 - y direction: `[-6 6] cm`;
@@ -99,10 +102,10 @@ The result we have when the object is as close as possible to the robot is shown
 
 | Best pose  | Set of suitable poses |
 | ------------- | ------------- |
-| <p align="center"> <img src=https://user-images.githubusercontent.com/9716288/100202351-7c312380-2f01-11eb-9b6c-3971fcf03348.jpg width="350"> </p> |   <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100202360-7e937d80-2f01-11eb-9e57-9203716539e5.jpg width="350"> </p> |
+| <p align="center"> <img src=https://user-images.githubusercontent.com/9716288/101144898-4b47a180-3619-11eb-9426-cc402d359ee7.jpg width="350"> </p> |   <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100202360-7e937d80-2f01-11eb-9e57-9203716539e5.jpg width="350"> </p> |
 
 The nominal pose defined [here](#1-identifying-the-nominal-pose) is shown in red.
-The best pose identified is at `(-7.4112 -6 36.25) cm` and  `-5.07455 degrees`. However, there is a _range_ of suitable poses, shown on the right, for which the computed score was below `0.005`.
+The best pose identified is at `(-12.5 -6 37.1) cm` and  `55 degrees`. However, there is a _range_ of suitable poses, shown on the right, for which the computed score was below `0.005`.
 
 #### 3.2 Object far
 
@@ -110,9 +113,9 @@ The result we have when the object is far from the robot is shown in the followi
 
 | Best pose  | Set of suitable poses |
 | ------------- | ------------- |
-|<p align="center"> <img src=https://user-images.githubusercontent.com/9716288/100202378-86532200-2f01-11eb-8d3b-91d29592bddf.jpg width="350"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100202380-86ebb880-2f01-11eb-81a3-31e03143a2fd.jpg width="350"> </p> |
+|<p align="center"> <img src=https://user-images.githubusercontent.com/9716288/101144902-4da9fb80-3619-11eb-9a3c-08cb631289e1.jpg width="350"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100202380-86ebb880-2f01-11eb-81a3-31e03143a2fd.jpg width="350"> </p> |
 
-The best pose identified is at `(-7.4112 -2 36.25) cm` and `-25.0746 degrees`. However, there is a _range_ of suitable poses, shown on the right, for which the computed score was below `0.005`.
+The best pose identified is at `(-12.5 -2 37.1) cm` and `35 degrees`. However, there is a _range_ of suitable poses, shown on the right, for which the computed score was below `0.005`.
 
 #### 3.3 Object in the middle
 
@@ -120,10 +123,10 @@ The result we have when the object is placed in the middle between `25 cm` and `
 
 | Best pose  | Set of suitable poses |
 | ------------- | ------------- |
-|<p align="center"> <img src=https://user-images.githubusercontent.com/9716288/100202389-8a7f3f80-2f01-11eb-9653-c33135987536.jpg width="350"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100202390-8a7f3f80-2f01-11eb-9e03-248a0ae9995a.jpg width="350"> </p> |
+|<p align="center"> <img src=https://user-images.githubusercontent.com/9716288/101144907-4edb2880-3619-11eb-9f07-e691b335bfac.jpg width="350"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100202390-8a7f3f80-2f01-11eb-9e03-248a0ae9995a.jpg width="350"> </p> |
 
 
-The best pose identified is at `(-11.4112 -6 36.25) cm` and `-5.07455 degrees`. However, there is a _range_ of suitable poses, shown on the right, for which the computed score was below `0.005`.
+The best pose identified is at `(-15.9 -6 37.1) cm` and `55 degrees`. However, there is a _range_ of suitable poses, shown on the right, for which the computed score was below `0.005`.
 
 ### 4. Choosing the final pose
 
@@ -142,11 +145,18 @@ The final set of pose is reported in the following table, showing the extracted 
 
 | Suitable poses  | Far | Close | Middle |
 | ------------- | ------------- | ------------- | ------------- |
-| `(-9.4112 0 40.2464)cm` <br> `-25 deg` | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100098399-471fc500-2e5e-11eb-9ab2-9dcd8ecf874f.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100098015-b21ccc00-2e5d-11eb-8f71-58e58d8adb85.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100098015-b21ccc00-2e5d-11eb-8f71-58e58d8adb85.png width="200"> </p> |
-| `(-8.4112 0 40.2464)cm` <br> `-25 deg` | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100097639-18edb580-2e5d-11eb-8a2e-5e6b4ef42674.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100098401-47b85b80-2e5e-11eb-867c-3b8e77c636cd.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100098089-d082c780-2e5d-11eb-95fa-d69529efad9b.png width="200"> </p> |
+| `(-12.1 0.0 41.0)cm` <br> `35 deg` | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100098399-471fc500-2e5e-11eb-9ab2-9dcd8ecf874f.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100098015-b21ccc00-2e5d-11eb-8f71-58e58d8adb85.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100098015-b21ccc00-2e5d-11eb-8f71-58e58d8adb85.png width="200"> </p> |
+| `(-11.3 0.0 41.0)cm` <br> `35 deg` | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100097639-18edb580-2e5d-11eb-8a2e-5e6b4ef42674.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100098401-47b85b80-2e5e-11eb-867c-3b8e77c636cd.png width="200"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/100098089-d082c780-2e5d-11eb-95fa-d69529efad9b.png width="200"> </p> |
 
-#### ⚠ **Important note**
-The final poses are defined with respect to the [nominal one](#1-identifying-the-nominal-pose).
+
+### 5. Designing the holder
+
+The following shows the final design of the holder with the identified camera pose:
+
+| Before  | After |
+| ------------- | ------------- |
+|<p align="center"> <img src=https://user-images.githubusercontent.com/9716288/99807903-6c4fc300-2b40-11eb-9856-4725f4e541b7.png width="350"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/101136146-3107c680-360d-11eb-808d-3b109b9579d5.png width="300"> </p> |
+
 
 <!--
 The following shows for each of the suitable poses, the extracted superquadric when the object is far, close and in the middle position.
