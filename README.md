@@ -31,10 +31,17 @@ The analysis carried out relies on the following steps:
 - the optimal superquadric is retrieved beforehand considering a reasonable view of the object, fully inside the field of view;
 - for each pose the superquadric is extracted and compared to the optimal.
 
-The camera pose is finally retrieved in order to minimize the difference between the dimensions of the optimal and the computed superquadric. 
+The camera pose is finally retrieved in order to minimize the difference between the dimensions of the optimal and the computed superquadric.
 
 
 ## 📊📉🎯 Report on Outcome and Results
+
+Using the camera pose provided by the analysis carried out, this is the final design of the holder:
+
+| Before  | After |
+| ------------- | ------------- |
+|<p align="center"> <img src=https://user-images.githubusercontent.com/9716288/99807903-6c4fc300-2b40-11eb-9856-4725f4e541b7.png width="350"> </p> | <p align="center">  <img src=https://user-images.githubusercontent.com/9716288/101136146-3107c680-360d-11eb-808d-3b109b9579d5.png width="300"> </p> |
+
 A full report describing the performed analysis can be found in the following [report](report.md).
 
 <!---
